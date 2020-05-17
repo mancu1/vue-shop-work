@@ -44,5 +44,9 @@
       "vue-cli-service lint",
       "git add"
     ]
-  }
+  },
+  "description": "mancu1-cool-work",
+  "main": "index.js",
+  "author": "mancu1",
+  "license": "MIT"
 }
