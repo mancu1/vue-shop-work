@@ -18,7 +18,7 @@ function createPdf(size: number) {
   const doc = new jsPDF({
     orientation: "p",
     unit: "px",
-    format: [size * 20 + 250, 300],
+    format: [size * 45 + 300, 300],
     putOnlyUsedFonts: true,
   });
   return new Promise<jsPDF>((resolve, reject) => {
@@ -45,14 +45,22 @@ export default async function (cart: CartItemType[]) {
   cart.forEach((item, index) => {
     total += item.price * item.count;
     doc.text(
-      `${
-        item.name.length > 13 ? item.name.slice(0, 13) + "..." : item.name
-      } - ${item.count} шт. * ${item.price} ₽ = ${item.price * item.count} ₽`,
-      10,
-      90 + 20 * index
+      `${item.name.length > 20 ? item.name.slice(0, 20) + "..." : item.name} ${
+        item.size
+      }`,
+      15,
+      90 + 35 * index
+    );
+    doc.text(
+      `${item.count} шт. * ${item.price} ₽ = ${item.price * item.count} ₽`,
+      210,
+      100 + 35 * index,
+      null,
+      null,
+      "right"
     );
   });
   doc.setFontSize(16);
-  doc.text(`Итог = ${total}`, 10, 115 + cart.length * 20);
+  doc.text(`Итог = ${total} ₽`, 15, 150 + cart.length * 35);
   doc.save("result.pdf");
 }
