@@ -12,7 +12,9 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "vuetify",
+      "moment"
     ],
     "paths": {
       "@/*": [
@@ -27,12 +29,13 @@
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
+    "src/**/*.ts" ,
+    "src/**/*.tsx" ,
+    "src/**/*.vue" ,
+    "tests/**/*.ts" ,
+    "tests/**/*.tsx" ,
+    "node_modules/@types/node/globals.d.ts"
+  ] ,
   "exclude": [
     "node_modules"
   ]

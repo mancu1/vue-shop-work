@@ -2,20 +2,30 @@
   "name": "vue-shop-work",
   "version": "0.1.0",
   "private": true,
+  "description": "mancu1-cool-work",
+  "author": "mancu1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "main": "index.js",
   "dependencies": {
+    "axios": "^0.19.2",
+    "buffer": "^5.6.0",
     "core-js": "^3.6.4",
+    "jspdf": "^1.5.3",
+    "moment": "^2.25.3",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.1",
     "vue-router": "^3.1.6",
-    "vuex": "^3.1.3"
+    "vuetify": "^2.2.11",
+    "vuex": "^3.1.3",
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
+    "@types/jspdf": "^1.3.3",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "@vue/cli-plugin-babel": "~4.3.0",
@@ -34,19 +44,18 @@
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-cli-plugin-vuetify": "~2.0.5",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.3.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "license": "MIT",
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
       "vue-cli-service lint",
       "git add"
     ]
-  },
-  "description": "mancu1-cool-work",
-  "main": "index.js",
-  "author": "mancu1",
-  "license": "MIT"
+  }
 }
