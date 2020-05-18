@@ -32,8 +32,10 @@
               class="text--accent-1 d-flex align-center justify-center text-center"
             >
               {{ cartItem.name }} -
-              {{ `${cartItem.count * cartItem.price} руб. ` }}
+              {{ `${cartItem.count * cartItem.price} ₽ ` }} - размер
+              {{ cartItem.size }}
             </div>
+
             <div class="d-flex align-center flex-row">
               <v-btn @click="dec(cartItem)" large outlined>
                 <v-icon>
@@ -92,6 +94,7 @@ import {
   INC_ITEM_TO_CART,
 } from "@/store/modules/cartModule/action-types";
 import CardToPdf from "@/helper/CardToPdf";
+import { SET_ITEM_BY_ID } from "@/store/modules/itemsList/mutations-type";
 
 @Component({
   name: "CardPage",

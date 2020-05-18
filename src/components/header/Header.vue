@@ -2,9 +2,14 @@
   <div>
     <v-app-bar color="#fff" dense fixed>
       <div>
-        <v-btn large @click="$router.push('/')">
-          интерактивного магазина для фабрики спортивной одежды
-
+        <v-btn
+          outlined
+          large
+          @click="$router.push('/')"
+          class="teal--text"
+          style="font-size: 12px;"
+        >
+          Sport Lify
           <v-icon large color="red">
             mdi-heart
           </v-icon>
@@ -12,22 +17,22 @@
       </div>
       <v-spacer />
       <div class="">
-        <v-menu offset-y>
+        <v-menu :close-on-click="false" offset-y>
           <template v-slot:activator="{ on }">
-            <v-text-field
-              prepend-inner-icon="mdi-magnify"
-              :loading="0 < searchValue.length && searchValue.length < 3"
-              :disabled="!allItems"
-              flat
-              hide-details
-              dense
-              outlined
-              v-model="searchValue"
-              v-on="on"
-              label="Поиск"
-            />
+            <div v-on="on">
+              <v-text-field
+                prepend-inner-icon="mdi-magnify"
+                :disabled="!allItems"
+                flat
+                hide-details
+                dense
+                outlined
+                v-model="searchValue"
+                label="Поиск"
+              />
+            </div>
           </template>
-          <v-list v-if="searchValue.length > 2">
+          <v-list>
             <v-list-item v-for="(item, index) in searchRes" :key="index">
               <v-btn large text style="width: 100%;" @click="goToItem(item)">
                 <v-list-item-title>{{ item.name }} </v-list-item-title>
@@ -87,14 +92,17 @@ export default class Header extends Vue {
   }
 
   get searchRes(): ItemProductType[] {
-    return this.searchValue.length > 2
-      ? this.allItems.reduce((arr: ItemProductType[], el) => {
-          if (el.name.indexOf(this.searchValue) + 1) {
-            arr.push(el);
-          }
-          return arr;
-        }, [])
-      : [];
+    return this.allItems.reduce((arr: ItemProductType[], el) => {
+      if (
+        el.name
+          .toLocaleLowerCase()
+          .indexOf(this.searchValue.toLocaleLowerCase()) + 1 &&
+        arr.length < 8
+      ) {
+        arr.push(el);
+      }
+      return arr;
+    }, []);
   }
 }
 </script>

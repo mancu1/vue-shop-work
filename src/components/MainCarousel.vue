@@ -1,5 +1,11 @@
 <template>
-  <v-carousel hide-delimiters cycle interval="5000">
+  <v-carousel
+    class="mt-6"
+    height="1280px"
+    hide-delimiters
+    cycle
+    interval="5000"
+  >
     <v-carousel-item
       v-for="(item, i) in items"
       :key="i"

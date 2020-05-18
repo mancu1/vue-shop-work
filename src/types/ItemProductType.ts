@@ -4,4 +4,5 @@ export interface ItemProductType {
   image: string;
   description: string;
   price: number;
+  size: 34 | 35 | 36;
 }

@@ -1,12 +1,11 @@
 <template>
   <v-card
-    class="d-flex flex-column align-content-space-between"
-    tile
-    height="350"
+    class="d-flex flex-column rounded-card align-content-space-between"
+    height="400"
     width="300"
   >
     <div style="height: inherit;" v-ripple @click="goToItem">
-      <div class="pa-1"><v-img height="110" :src="item.image" /></div>
+      <div class="pa-3"><v-img height="110" :src="item.image" /></div>
       <v-card-title>
         {{ item.name }}
       </v-card-title>
@@ -14,10 +13,20 @@
         {{ item.description.slice(0, 75) + "..." }}
       </v-card-subtitle>
       <v-card-text>
-        {{ item.price + " руб." }}
+        {{ item.price + " ₽" }}
       </v-card-text>
     </div>
-    <v-card-actions>
+    <v-card-actions class="d-flex flex-row">
+      <div class="d-flex flex-row">
+        <v-select
+          hide-details
+          :items="sizes"
+          v-model="size"
+          dense
+          outlined
+          label="размер"
+        ></v-select>
+      </div>
       <div
         v-if="currentCartItem"
         style="width: 100%;"
@@ -53,13 +62,23 @@ import {
   DEC_ITEM_TO_CART,
   INC_ITEM_TO_CART,
 } from "@/store/modules/cartModule/action-types";
-import { CartItemType } from "@/types/CartItemType";
+import { SET_ITEM_BY_ID } from "@/store/modules/itemsList/mutations-type";
 
 @Component({
   name: "ItemCard",
 })
 export default class ItemCard extends Vue {
   @Prop({ type: Object, required: true }) item!: ItemProductType;
+
+  sizes = [34, 35, 36];
+
+  get size() {
+    return this.item.size;
+  }
+
+  set size(newSize: 34 | 35 | 36) {
+    this.$store.commit(SET_ITEM_BY_ID, { ...this.item, size: newSize });
+  }
 
   goToItem() {
     this.$router.push(`/item/${this.item.id}`);
@@ -78,4 +97,8 @@ export default class ItemCard extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.rounded-card {
+  border-radius: 50px;
+}
+</style>
